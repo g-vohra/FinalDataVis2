@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 480,
+  "height": 300,
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "axis": {"title": "Year"}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {"title": "Intensity (annual change)"}
+    },
+    "color": {
+      "field": "variable",
+      "type": "nominal",
+      "scale": {"scheme": "category10"},
+      "legend": {
+        "title": "Intensity Type",
+        "orient": "right",
+        "offset": 10,
+        "symbolSize": 100,
+        "labelFontSize": 10
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "temporal", "title": "Year"},
+      {"field": "variable", "type": "nominal", "title": "Intensity Type"},
+      {"field": "value", "type": "quantitative", "title": "Intensity Value", "format": ".2f"}
+    ]
+  },
+  "transform": [
+    {
+      "fold": ["Energy intensity", "Carbon intensity of energy supply"],
+      "as": ["variable", "value"]
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/g-vohra/DataVis2/refs/heads/main/data/2016-soe-atmosphere-annual-change-co2-fuel-combustion-ippu-underlying-drivers-1992-2014.csv"
+  }
+}
